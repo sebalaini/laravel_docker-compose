@@ -43,14 +43,19 @@ services:
     tty: true
     ports:
       - "3306:3306"
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
     environment:
       MYSQL_DATABASE: laravel
+      MYSQL_USER: laraveluser
+      MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql
-      # - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/my.cnf:/etc/my.cnf
     networks:
       - app-network
 
