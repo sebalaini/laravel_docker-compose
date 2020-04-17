@@ -37,14 +37,14 @@ services:
 
   #MySQL Service
   db:
-    image: mysql:latest
+    # don't use a version 8 image or it will fail to connect
+    image: mysql:5.7
     container_name: db
     restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
     expose:
-      # Opens port 3306 on the container
       - '3306'
     environment:
       MYSQL_DATABASE: laravel
@@ -54,7 +54,8 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - dbdata:/var/lib/mysql
+      # - dbdata:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
       - ./mysql/my.cnf:/etc/my.cnf
     networks:
       - app-network
@@ -65,6 +66,6 @@ networks:
     driver: bridge
 
 #Volumes
-volumes:
-  dbdata:
-    driver: local
+# volumes:
+#   dbdata:
+#     driver: local
