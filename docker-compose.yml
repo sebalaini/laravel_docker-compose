@@ -44,8 +44,6 @@ services:
     tty: true
     ports:
       - "3306:3306"
-    # expose:
-    #   - '3306'
     environment:
       MYSQL_DATABASE: laravel
       MYSQL_USER: laraveluser
