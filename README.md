@@ -1,4 +1,4 @@
-# Nginx, PHP 7.2, MySQL 5.7, Laravel 7 docker boilerplate
+# Nginx, PHP 7.3, MySQL 5.7, Laravel 7 docker boilerplate
 
 boilerplate template for Laravel with docker-compose
 
