@@ -137,3 +137,10 @@ Once the migration is complete, you can run a query to check if you are properly
 ## External connection with 3rd party software
 
 If you prefer to connect to the database using software like sequel PRO you can connect by using `127.0.0.1` as a host.
+
+# TODO #
+
+- switch to MariaDB?
+- PHP CS fixer
+- BDD (behat)
+- Redis?
