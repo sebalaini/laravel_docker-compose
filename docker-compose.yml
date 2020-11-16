@@ -16,7 +16,7 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./LOCAL/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
 
@@ -28,7 +28,7 @@ services:
     tty: true
     volumes:
       - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./LOCAL/nginx/conf.d/:/etc/nginx/conf.d/
     ports:
       - "80:80"
       - "443:443"
@@ -52,9 +52,8 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      # - dbdata:/var/lib/mysql
       - ./mysql/data:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/my.cnf
+      - ./LOCAL/mysql/my.cnf:/etc/my.cnf
     networks:
       - app-network
 
