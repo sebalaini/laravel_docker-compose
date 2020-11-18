@@ -140,7 +140,5 @@ If you prefer to connect to the database using software like sequel PRO you can 
 
 # TODO #
 
-- switch to MariaDB?
-- PHP CS fixer
 - BDD (behat)
 - Redis?
