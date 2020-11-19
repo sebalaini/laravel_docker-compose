@@ -30,8 +30,7 @@ services:
       - ./api:/var/www
       - ./LOCAL/nginx/conf.d/:/etc/nginx/conf.d/
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:82"
     links:
       - api
     networks:
@@ -56,6 +55,20 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./LOCAL/mysql/my.cnf:/etc/my.cnf
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: dev_pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    restart: always
+    ports:
+      - 8080:80
     networks:
       - app-network
 
