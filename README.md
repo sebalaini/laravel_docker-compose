@@ -90,15 +90,15 @@ You will be prompted for the password you set for the MySQL root account during 
 
 Start by checking for the database called `laravel, which you defined in your docker-compose file. Run the show databases command to check for existing databases:
 
-`mysql > show databases;``
+`mysql > show databases;`
 
 Next, create the user account that will be allowed to access this database. Our username will be `laraveluser`, though you can replace this with another name if you’d prefer. Just be sure that your username and password here match the details you set in your `.env` file in the previous step:
 
-` mysql > GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'your_laravel_db_password';``
+`mysql > GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'your_laravel_db_password';`
 
 Flush the privileges to notify the MySQL server of the changes:
 
-`mysql > FLUSH PRIVILEGES;``
+`mysql > FLUSH PRIVILEGES;`
 
 Exit MySQL:
 
