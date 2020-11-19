@@ -2,7 +2,7 @@ version: '3'
 services:
 
   #PHP Service
-  app:
+  api:
     build:
       context: LOCAL/php
       dockerfile: Dockerfile
@@ -32,6 +32,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    links:
+      - api
     networks:
       - app-network
 
