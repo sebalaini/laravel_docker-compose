@@ -28,10 +28,24 @@
 </template>
 
 <script>
-export default {}
+import axios from 'axios';
+
+export default {
+  mounted() {
+    axios.get('http://localhost:82/api/message').then(resp => {
+
+      console.log(resp.data);
+    });
+  }
+}
 </script>
 
 <style>
+/* Sample `apply` at-rules with Tailwind CSS
+.container {
+@apply min-h-screen flex justify-center items-center text-center mx-auto;
+}
+*/
 .container {
   margin: 0 auto;
   min-height: 100vh;

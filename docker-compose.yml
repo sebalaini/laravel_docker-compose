@@ -1,5 +1,22 @@
-version: '3'
+version: '3.8'
 services:
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    volumes:
+      - ./api:/var/www
+      - ./LOCAL/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:81"
+      - "82:82"
+    links:
+      - api
+      - client
+    networks:
+      - app-network
 
   #PHP Service
   api:
@@ -13,21 +30,6 @@ services:
     volumes:
       - ./api:/var/www
       - ./LOCAL/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    networks:
-      - app-network
-
-  #Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    volumes:
-      - ./api:/var/www
-      - ./LOCAL/nginx/conf.d/:/etc/nginx/conf.d/
-    ports:
-      - "80:82"
-    links:
-      - api
     networks:
       - app-network
 
@@ -64,6 +66,17 @@ services:
       - 8080:80
     links:
       - db
+    networks:
+      - app-network
+
+  # Client container
+  client:
+    build:
+      context: LOCAL/node
+      dockerfile: Dockerfile
+    container_name: client
+    volumes:
+      - ./client:/var/www/client
     networks:
       - app-network
 
