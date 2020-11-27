@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">
-        app
+        {{ this.appName }}
       </h1>
       <div class="links">
         <a
@@ -31,11 +31,18 @@
 import axios from 'axios';
 
 export default {
-  mounted() {
-    axios.get('http://localhost:82/api/message').then(resp => {
-
-      console.log(resp.data);
-    });
+  data () {
+    return {
+      appName: ''
+    }
+  },
+  beforeMount() {
+    axios.get(`${process.env.BASE_API_URL}/message`).then(resp => {
+      this.appName = resp.data.name;
+    })
+    .catch(error => {
+      console.log(error.response.status)
+    })
   }
 }
 </script>

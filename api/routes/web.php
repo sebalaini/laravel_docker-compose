@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/api/message', function () {
-    return response()->json(["message" => "hello"]);
+Route::prefix('api')->group(function () {
+    Route::get('message', function () {
+        return response()->json(["name" => "Laravel, Nuxt boilerplate"]);
+    });
 });
