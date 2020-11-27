@@ -41,6 +41,7 @@ DB_PASSWORD=root
 ```
 
 ## start
+
 With all of your services defined in your docker-compose file, you just need to issue a single command to start all of the containers, create the volumes, and set up and connect the networks:
 
 `$ docker-compose up`
