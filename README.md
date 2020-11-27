@@ -1,40 +1,41 @@
-# Nginx, PHP 7.3, MySQL 5.7, Laravel 8 docker boilerplate
+## Laravel, Nuxt docker
+Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
-boilerplate template for Laravel with docker-compose
+## Table of content
+[stack](#stack)
+[env](#env)
+[start](#start)
 
-## Modifying Environment Settings and Running the Containers
+## stack
+- Nginx
+- PHP 7.3
+- MySQL 5.7
+- phpMyAdmin
+- Node
 
-As a final step, before to start with the project, we will make a copy of the `.env.example` file that Laravel includes by default and name the copy `.env`, which is the file Laravel expects to define its environment:
+## Env
 
-`$ cp .env.example .env`
+As a final step, before to start with the project, we will make a copy of the `.env.example` file that Laravel and Nuxt includes and name them `.env`, which is the file Laravel expects to define its environment and Nuxt to use custom env variables.
 
-You can now modify the `.env` file on the app container to include specific details about your setup.
-
-Open the file using nano or your text editor of choice:
-
-`$ nano .env`
-
-Find the block that specifies DB_CONNECTION and update it to reflect the specifics of your setup (docker-compose.yml). You will modify the following fields:
+The `.env` of Laravel need to reflect the same info from your `docker-compose.yml`:  and update it to reflect the specifics of your setup. You will modify the following fields:
 
 ```
-DB_HOST will be your db database container.
+DB_HOST will be your database name container.
 DB_DATABASE will be the laravel database.
 DB_USERNAME will be the username you will use for your database. In this case, we will use laraveluser.
-DB_PASSWORD will be the secure password you would like to use for this user account.
+DB_PASSWORD will be the secure password you would like to use for this user account. In this case, we will use root.
 
-/var/www/.env
+api/.env
 
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=laraveluser
-DB_PASSWORD=your_laravel_db_password
-
+DB_PASSWORD=root
 ```
 
-Save your changes and exit your editor.
-
+## start
 With all of your services defined in your docker-compose file, you just need to issue a single command to start all of the containers, create the volumes, and set up and connect the networks:
 
 `$ docker-compose up -d`

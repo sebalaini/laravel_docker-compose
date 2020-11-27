@@ -47,6 +47,6 @@ export default {
   },
   // Env
   env: {
-    baseUrl: process.env.BASE_API_URL || 'http://localhost:82'
+    baseUrl: process.env.BASE_API_URL || 'http://localhost:82/api'
   }
 }
