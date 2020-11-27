@@ -2,9 +2,14 @@
 Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## Table of content
-[stack](#stack)
+[Stack](#stack)
 [env](#env)
-[start](#start)
+[Setup](#start)
+[Database](#Creating-a-User-for-MySQL)
+[Migration](#Migrating-Data-and-Working-with-the-Tinker-Console)
+[phpMyAdmin](#phpMyAdmin)
+[3rd party tools connection](#External-connection-with-3rd-party-software)
+[TODO](#todo)
 
 ## stack
 - Nginx
@@ -38,31 +43,25 @@ DB_PASSWORD=root
 ## start
 With all of your services defined in your docker-compose file, you just need to issue a single command to start all of the containers, create the volumes, and set up and connect the networks:
 
-`$ docker-compose up -d`
+`$ docker-compose up`
 
-When you run docker-compose up for the first time, it will download all of the necessary Docker images, which might take a while. Once the images are downloaded and stored in your local machine, Compose will create your containers. The `-d` flag daemonizes the process, running your containers in the background.
+When you run docker-compose up for the first time, it will download all of the necessary Docker images, which might take a while. Once the images are downloaded and stored in your local machine, Compose will create your containers. You can run the process with the `-d` flag that daemonizes the process, running your containers in the background but you will not be able to see the Nuxt errors/messages if you do so.
 
-Once the process is complete, use the following command to list all of the running containers:
-
-`$ docker ps`
-
-You will see the following output with details about your app, webserver, and db containers:
+Once the process is complete, you can use the `$ docker ps` to list all of the running containers:
 
 ```
 Output
 CONTAINER ID        NAMES               IMAGE                             STATUS              PORTS
 c31b7b3251e0        db                  mysql:5.7.22                      Up 2 seconds        0.0.0.0:3306->3306/tcp
-ed5a69704580        app                 digitalocean.com/php              Up 2 seconds        9000/tcp
 5ce4ee31d7c0        webserver           nginx:alpine                      Up 2 seconds        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp
+...
 ```
 
-The CONTAINER ID in this output is a unique identifier for each container, while NAMES lists the service name associated with each. You can use both of these identifiers to access the containers. IMAGE defines the image name for each container, while STATUS provides information about the container’s state: whether it’s running, restarting, or stopped.
-
-We’ll now use docker-compose exec to set the application key for the Laravel application. The docker-compose exec command allows you to run specific commands in containers.
+We’ll now use `docker-compose exec` to set the application key for the Laravel application. The `docker-compose exec` command allows you to run specific commands in containers.
 
 The following command will generate a key and copy it to your .env file, ensuring that your user sessions and encrypted data remain secure:
 
-`$ docker-compose exec app php artisan key:generate`
+`$ docker-compose exec api php artisan key:generate`
 
 You now have the environment settings required to run your application. To cache these settings into a file, which will boost your application’s load speed, run:
 
@@ -70,16 +69,15 @@ You now have the environment settings required to run your application. To cache
 
 Your configuration settings will be loaded into `/var/www/bootstrap/cache/config.php` on the container.
 
-As a final step, visit `http://127.0.0.1`  or `localhost` in the browser. You will see the home page for your Laravel application.
+As a final step, visit `http://127.0.0.1`  or `localhost` in the browser. You will see the home page for your application.
 
 With your containers running and your configuration information in place, you can move on to configuring your user information for the `laravel` database on the db container.
-
 
 ##  Creating a User for MySQL
 
 The default MySQL installation only creates the root administrative account, which has unlimited privileges on the database server. In general, it’s better to avoid using the root administrative account when interacting with the database. Instead, let’s create a dedicated database user for our application’s `Laravel` database.
 
-To create a new user, execute an interactive bash shell on the db container with docker-compose exec:
+To create a new user, execute an interactive bash shell on the db container:
 
 `$ docker-compose exec db bash`
 
@@ -89,7 +87,7 @@ Inside the container, log into the MySQL root administrative account:
 
 You will be prompted for the password you set for the MySQL root account during installation in your docker-compose file.
 
-Start by checking for the database called `laravel, which you defined in your docker-compose file. Run the show databases command to check for existing databases:
+Start by checking for the database called `laravel`, which you defined in your docker-compose file. Run the show databases command to check for existing databases:
 
 `mysql > show databases;`
 
@@ -109,14 +107,13 @@ Finally, exit the container:
 
 `root@...#/ exit`
 
-
 ## Migrating Data and Working with the Tinker Console
 
 With your application running, you can migrate your data and experiment with the `tinker` command, which will initiate a *PsySH* console with Laravel preloaded. PsySH is a runtime developer console and interactive debugger for PHP, and Tinker is a REPL specifically for Laravel. Using the `tinker` command will allow you to interact with your Laravel application from the command line in an interactive shell.
 
 First, test the connection to MySQL by running the Laravel `artisan migrate` command, which creates a migrations table in the database from inside the container:
 
-`$ docker-compose exec app php artisan migrate`
+`$ docker-compose exec api php artisan migrate`
 
 This command will migrate the default Laravel tables. The output confirming the migration will look like this:
 
@@ -132,8 +129,12 @@ Migrated:  2014_10_12_100000_create_password_resets_table
 
 Once the migration is complete, you can run a query to check if you are properly connected to the database using the `tinker` command:
 
-`$ docker-compose exec app php artisan tinker`
+`$ docker-compose exec api php artisan tinker`
 
+
+## phpMyAdmin
+
+This setup provides a phpMyAdmin interface available at `127.0.0.1:3306` using the same credentials from the `.env` file
 
 ## External connection with 3rd party software
 
