@@ -2,14 +2,14 @@
 Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## Table of content
-[Stack](#stack)
-[env](#env)
-[Setup](#start)
-[Database](#Creating-a-User-for-MySQL)
-[Migration](#Migrating-Data-and-Working-with-the-Tinker-Console)
-[phpMyAdmin](#phpMyAdmin)
-[3rd party tools connection](#External-connection-with-3rd-party-software)
-[TODO](#todo)
+- [Stack](#stack)
+- [env](#env)
+- [Setup](#start)
+- [Database](#Creating-a-User-for-MySQL)
+- [Migration](#Migrating-Data-and-Working-with-the-Tinker-Console)
+- [phpMyAdmin](#phpMyAdmin)
+- [3rd party tools connection](#External-connection-with-3rd-party-software)
+- [TODO](#todo)
 
 ## stack
 - Nginx
