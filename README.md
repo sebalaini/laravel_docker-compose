@@ -25,10 +25,10 @@ As a final step, before to start with the project, we will make a copy of the `.
 The `.env` of Laravel need to reflect the same info from your `docker-compose.yml`:  and update it to reflect the specifics of your setup. You will modify the following fields:
 
 ```
-DB_HOST will be your database name container.
-DB_DATABASE will be the laravel database.
-DB_USERNAME will be the username you will use for your database. In this case, we will use laraveluser.
-DB_PASSWORD will be the secure password you would like to use for this user account. In this case, we will use root.
+DB_HOST The database name container.
+DB_DATABASE The laravel database.
+DB_USERNAME The username for your database. In this case, we will use laraveluser.
+DB_PASSWORD The secure password for this user account. In this case, we will use root.
 
 api/.env
 
