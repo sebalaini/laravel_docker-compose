@@ -11,9 +11,9 @@
     "lint": "npm run lint:style"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.2",
-    "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "@nuxtjs/axios": "^5.12.3",
+    "core-js": "^3.8.0",
+    "nuxt": "^2.14.8"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
