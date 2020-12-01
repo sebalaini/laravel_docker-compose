@@ -66,7 +66,7 @@ The following command will generate a key and copy it to your .env file, ensurin
 
 You now have the environment settings required to run your application. To cache these settings into a file, which will boost your application’s load speed, run:
 
-`$ docker-compose exec app php artisan config:cache`
+`$ docker-compose exec api php artisan config:cache`
 
 Your configuration settings will be loaded into `/var/www/bootstrap/cache/config.php` on the container.
 
