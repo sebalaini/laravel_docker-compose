@@ -44,6 +44,12 @@ DB_PASSWORD=root
 
 With all of your services defined in your docker-compose file, you just need to issue a single command to start all of the containers, create the volumes, and set up and connect the networks:
 
+Before to start docker install the necessary packages in the client folder.
+
+`$ npm install`
+
+And then start docker:
+
 `$ docker-compose up`
 
 When you run docker-compose up for the first time, it will download all of the necessary Docker images, which might take a while. Once the images are downloaded and stored in your local machine, Compose will create your containers. You can run the process with the `-d` flag that daemonizes the process, running your containers in the background but you will not be able to see the Nuxt errors/messages if you do so.
@@ -60,8 +66,9 @@ c31b7b3251e0        db                  mysql:5.7.22                      Up 2 s
 
 We’ll now use `docker-compose exec` to set the application key for the Laravel application. The `docker-compose exec` command allows you to run specific commands in containers.
 
-The following command will generate a key and copy it to your .env file, ensuring that your user sessions and encrypted data remain secure:
+The following command will install the necessary packages and generate a key and copy it to your .env file, ensuring that your user sessions and encrypted data remain secure:
 
+`$ docker-compose exec api composer install`
 `$ docker-compose exec api php artisan key:generate`
 
 You now have the environment settings required to run your application. To cache these settings into a file, which will boost your application’s load speed, run:
