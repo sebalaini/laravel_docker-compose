@@ -11,14 +11,14 @@
     "lint": "npm run lint:style"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.3",
-    "core-js": "^3.8.0",
-    "nuxt": "^2.14.8"
+    "@nuxtjs/axios": "^5.12.5",
+    "core-js": "^3.8.2",
+    "nuxt": "^2.14.12"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/stylelint-module": "^4.0.0",
-    "@nuxtjs/tailwindcss": "^3.1.0",
+    "@nuxtjs/tailwindcss": "^3.4.2",
     "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0"
   }

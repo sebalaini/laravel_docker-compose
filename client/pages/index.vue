@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">
-        {{ this.appName }}
+        {{ appName }}
       </h1>
       <div class="links">
         <a

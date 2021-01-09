@@ -9,6 +9,7 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 - [Migration](#Migrating-Data-and-Working-with-the-Tinker-Console)
 - [phpMyAdmin](#phpMyAdmin)
 - [3rd party tools connection](#External-connection-with-3rd-party-software)
+- [PHP CS Fixer](#PHP-CS-Fixer)
 - [TODO](#todo)
 
 ## stack
@@ -139,7 +140,6 @@ Once the migration is complete, you can run a query to check if you are properly
 
 `$ docker-compose exec api php artisan tinker`
 
-
 ## phpMyAdmin
 
 This setup provides a phpMyAdmin interface available at `127.0.0.1:3306` using the same credentials from the `.env` file
@@ -147,6 +147,10 @@ This setup provides a phpMyAdmin interface available at `127.0.0.1:3306` using t
 ## External connection with 3rd party software
 
 If you prefer to connect to the database using software like sequel PRO you can connect by using `127.0.0.1` as a host.
+
+## PHP CS Fixer
+
+To run the PHP CS Fixer run the following command: `./vendor/bin/php-cs-fixer fix --verbose --show-progress=estimating`
 
 # TODO #
 
