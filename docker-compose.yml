@@ -3,12 +3,12 @@ services:
 
   #Nginx Service
   webserver:
-    image: nginx:alpine
+    image: nginx:latest
     container_name: webserver
     restart: unless-stopped
     volumes:
       - ./api:/var/www
-      - ./LOCAL/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./LOCAL/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "80:81"
       - "82:82"
