@@ -23,7 +23,7 @@ export default {
 
   styleResources: {},
 
-  plugins: ['~/plugins/axios'],
+  plugins: [],
 
   components: true,
 
@@ -50,11 +50,6 @@ export default {
     configPath: 'tailwind.config.js',
     jit: false,
     viewer: false
-  },
-
-
-  router: {
-    middleware: ['check-auth']
   },
 
   /*

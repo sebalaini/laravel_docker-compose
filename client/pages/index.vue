@@ -37,7 +37,7 @@ export default {
     }
   },
   beforeMount() {
-    axios.get(`${process.env.BASE_API_URL}/message`).then(resp => {
+    axios.get(`${process.env.BASE_API_BROWSER_URL}/message`).then(resp => {
       this.appName = resp.data.name;
     })
     .catch(error => {
