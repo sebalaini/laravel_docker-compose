@@ -154,5 +154,6 @@ To run the PHP CS Fixer run the following command: `./vendor/bin/php-cs-fixer fi
 
 # TODO #
 
+- update doc
 - BDD (behat)
 - Redis?
