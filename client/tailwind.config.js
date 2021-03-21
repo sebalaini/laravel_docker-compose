@@ -4,10 +4,10 @@ module.exports = {
     content: [
       './components/**/*.vue',
       './layouts/**/*.vue',
-      './pages/**/*.vue',
+      './pages/**/*.vue'
     ],
     theme: {},
     variants: {},
-    plugins: [],
+    plugins: []
   }
 }

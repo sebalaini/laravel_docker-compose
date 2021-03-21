@@ -1,0 +1,28 @@
+{
+  "plugins": [
+    "stylelint-declaration-use-variable"
+  ],
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "function",
+          "if",
+          "each",
+          "include",
+          "mixin",
+          "at-root",
+          "extend"
+        ]
+      }
+    ],
+    "no-empty-source": null,
+    "no-descending-specificity": null,
+    "declaration-no-important": true,
+    "selector-pseudo-element-no-unknown": [true, {
+      "ignorePseudoElements": ["v-deep"]
+    }],
+  },
+}

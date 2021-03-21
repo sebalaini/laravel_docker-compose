@@ -1,5 +1,4 @@
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'app',
     meta: [
@@ -7,46 +6,108 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-  ],
+  telemetry: false,
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-  ],
+  loading: false,
 
-  // Auto import components (https://go.nuxtjs.dev/config-components)
+  vue: {
+    config: {
+      productionTip: true
+    }
+  },
+
+  css: [],
+
+  styleResources: {},
+
+  plugins: ['~/plugins/axios'],
+
   components: true,
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
-    // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/style-resources',
     '@nuxtjs/tailwindcss',
-    // https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
+    '@nuxtjs/dotenv'
   ],
 
-  // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-  ],
+  modules: ['@nuxtjs/axios'],
 
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
+  server: {
+    port: 3000, // default: 3000
+    host: '0.0.0.0', // default: localhost,
+    timing: {
+      total: true
+    }
   },
-  // Env
-  env: {
-    baseUrl: process.env.BASE_API_URL || 'http://localhost:82/api'
+
+  /**
+   * tailwind
+   */
+  tailwindcss: {
+    configPath: 'tailwind.config.js',
+    jit: false,
+    viewer: false
+  },
+
+
+  router: {
+    middleware: ['check-auth']
+  },
+
+  /*
+    ** Build configuration
+    */
+  build: {
+    filenames: {
+      app: ({ isModern, isDev }) =>
+        `${!isModern ? 'legacy-' : ''}${!isDev ? '[contenthash]' : ''}--[name]--app.js`,
+      chunk: ({ isModern, isDev }) =>
+        `${!isModern ? 'legacy-' : ''}${!isDev ? '[contenthash]' : ''}--[name]--chunk.js`
+    },
+
+    loaders: {
+      scss: { sourceMap: process.env.NODE_ENV === 'production' },
+      vue: { cacheBusting: process.env.NODE_ENV === 'production' }
+    },
+
+    babel: {
+      presets ({ envName }) {
+        const envTargets = {
+          client: { browsers: ['last 2 versions'], ie: 11 },
+          server: { node: 'current' }
+        }
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              targets: envTargets[envName],
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    },
+
+    html: {
+      minify: {
+        collapseBooleanAttributes: true,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
+        trimCustomFragments: true,
+        useShortDoctype: true,
+        collapseInlineTagWhitespace: true,
+        collapseWhitespace: true
+      }
+    },
+
+    hardSource: process.env.BUILD_CACHE || false
+
   }
 }
