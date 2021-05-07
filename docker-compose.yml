@@ -3,7 +3,7 @@ services:
 
   #Nginx Service
   webserver:
-    image: nginx:latest
+    image: nginx:1.19
     container_name: webserver
     restart: unless-stopped
     volumes:
