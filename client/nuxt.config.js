@@ -27,13 +27,30 @@ export default {
 
   components: true,
 
+  features: {
+    store: true,
+    layout: true,
+    meta: true,
+    middleware: true,
+    transition: false,
+    deprecation: false,
+    validate: false,
+    asyncData: true,
+    fetch: true,
+    clientOnline: true,
+    clientPrefetch: true,
+    clientUserUrl: true,
+    componentAliases: true,
+    componentClientOnly: true
+  },
+
   buildModules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/dotenv'
   ],
 
-  modules: ['@nuxtjs/axios'],
+  modules: [],
 
   server: {
     port: 3000, // default: 3000
@@ -52,10 +69,25 @@ export default {
     viewer: false
   },
 
+  router: {},
+
+  /*
+    ** Build configuration
+    */
+
+  render: {
+    static: {
+      maxAge: 60 * 60 * 24 * 182 * 1000
+    }
+  },
+
   /*
     ** Build configuration
     */
   build: {
+    cache: true,
+    parallel: true,
+
     filenames: {
       app: ({ isModern, isDev }) =>
         `${!isModern ? 'legacy-' : ''}${!isDev ? '[contenthash]' : ''}--[name]--app.js`,
@@ -69,9 +101,9 @@ export default {
     },
 
     babel: {
-      presets ({ envName }) {
+      presets({ envName }) {
         const envTargets = {
-          client: { browsers: ['last 2 versions'], ie: 11 },
+          client: { browsers: ['last 2 versions'] },
           server: { node: 'current' }
         }
         return [
@@ -102,7 +134,13 @@ export default {
       }
     },
 
-    hardSource: process.env.BUILD_CACHE || false
+    terser: {
+      cache: true
+    }
+  },
 
+  env: {
+    BASEAPIURL: process.env.BASE_API_URL,
+    BASEAPIBROWSERURL: process.env.BASE_API_BROWSER_URL
   }
 }

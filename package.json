@@ -1,0 +1,14 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "deploy": "npm run install:db && npm run install:be && npm run install:fe",
+    "install:be": "docker exec --rm -it composer:latest composer install && docker exec -it api ./LOCAL/deploy.sh",
+    "install:db": "npm run create:db && npm run create:db-user && npm run flush:db",
+    "install:fe": "docker run --rm -it node:14.17.4-alpine npm install",
+    "create:db": "docker exec db mysql -uroot -proot -e 'CREATE DATABASE jira;'",
+    "create:db-user": "docker exec db mysql -uroot -proot -e \"GRANT ALL ON jira.* TO 'laraveluser'@'%' IDENTIFIED BY 'root';\"",
+    "flush:db": "docker exec db mysql -uroot -proot -e 'FLUSH PRIVILEGES;'"
+  }
+}
