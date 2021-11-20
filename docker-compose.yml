@@ -20,10 +20,7 @@ services:
 
   #PHP Service
   api:
-    build:
-      context: LOCAL/php
-      dockerfile: Dockerfile
-    image: php
+    image: sebalaini/php8:latest
     container_name: api
     restart: unless-stopped
     working_dir: /var/www
