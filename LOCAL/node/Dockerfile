@@ -1,5 +1,5 @@
 # Image
-FROM node:14.17.4-alpine
+FROM node:16.13.0-alpine
 
 # Set up work directory
 WORKDIR /var/www/client
