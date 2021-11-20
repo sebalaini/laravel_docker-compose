@@ -18,11 +18,12 @@
         ]
       }
     ],
+    "string-quotes": "single",
     "no-empty-source": null,
     "no-descending-specificity": null,
     "declaration-no-important": true,
     "selector-pseudo-element-no-unknown": [true, {
       "ignorePseudoElements": ["v-deep"]
-    }],
-  },
+    }]
+  }
 }
