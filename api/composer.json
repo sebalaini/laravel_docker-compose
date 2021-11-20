@@ -1,24 +1,26 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "Nginx, PHP 7.3, MySQL 5.7, Laravel 8 docker boilerplate.",
+    "description": "Nginx, PHP 8, MySQL 5.7, Laravel 8, Redis docker boilerplate.",
     "keywords": [
-        "nginx",
-        "php",
-        "mysql",
-        "laravel",
+        "Nginx",
+        "PHP",
+        "MySQL",
+        "Laravel",
+        "Redis",
         "boilerplate"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "brianium/paratest": "^6.2",
         "fideloper/proxy": "^4.4",
         "friendsofphp/php-cs-fixer": "^3.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
