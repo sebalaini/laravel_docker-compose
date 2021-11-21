@@ -14,7 +14,7 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## stack
 - Nginx
-- PHP 7.4
+- PHP 8
 - MySQL 5.7
 - phpMyAdmin
 - Node
