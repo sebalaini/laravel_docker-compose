@@ -19,9 +19,13 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 - phpMyAdmin
 - Node
 
+## Install
+
+To install the application run the script `npm run deploy`, this script will install Nuxt with relative dependencies and Laravel with relative dependencies
+
 ## Env
 
-As a final step, before to start with the project, we will make a copy of the `.env.example` file that Laravel and Nuxt includes and name them `.env`, which is the file Laravel expects to define its environment and Nuxt to use custom env variables.
+As a final step, before to start with the project, we will make a copy of the `.env.example` file in the client folder and name it `.env`.
 
 The `.env` of Laravel need to reflect the same info from your `docker-compose.yml`:  and update it to reflect the specifics of your setup. You will modify the following fields:
 
@@ -45,32 +49,10 @@ DB_PASSWORD=root
 
 With all of your services defined in your docker-compose file, you just need to issue a single command to start all of the containers, create the volumes, and set up and connect the networks:
 
-Before to start docker install the necessary packages in the client folder.
-
-`$ npm install`
-
-And then start docker:
 
 `$ docker-compose up`
 
-When you run docker-compose up for the first time, it will download all of the necessary Docker images, which might take a while. Once the images are downloaded and stored in your local machine, Compose will create your containers. You can run the process with the `-d` flag that daemonizes the process, running your containers in the background but you will not be able to see the Nuxt errors/messages if you do so.
-
-Once the process is complete, you can use the `$ docker ps` to list all of the running containers:
-
-```
-Output
-CONTAINER ID        NAMES               IMAGE                             STATUS              PORTS
-c31b7b3251e0        db                  mysql:5.7.22                      Up 2 seconds        0.0.0.0:3306->3306/tcp
-5ce4ee31d7c0        webserver           nginx:alpine                      Up 2 seconds        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp
-...
-```
-
-We’ll now use `docker-compose exec` to set the application key for the Laravel application. The `docker-compose exec` command allows you to run specific commands in containers.
-
-The following command will install the necessary packages and generate a key and copy it to your .env file, ensuring that your user sessions and encrypted data remain secure:
-
-`$ docker-compose exec api composer install`
-`$ docker-compose exec api php artisan key:generate`
+After that command run the command `npm run install:laravel` to install Laravel and generate the Key.
 
 You now have the environment settings required to run your application. To cache these settings into a file, which will boost your application’s load speed, run:
 
@@ -86,35 +68,7 @@ With your containers running and your configuration information in place, you ca
 
 The default MySQL installation only creates the root administrative account, which has unlimited privileges on the database server. In general, it’s better to avoid using the root administrative account when interacting with the database. Instead, let’s create a dedicated database user for our application’s `Laravel` database.
 
-To create a new user, execute an interactive bash shell on the db container:
-
-`$ docker-compose exec db bash`
-
-Inside the container, log into the MySQL root administrative account:
-
-`root@...#/ mysql -u root -p`
-
-You will be prompted for the password you set for the MySQL root account during installation in your docker-compose file.
-
-Start by checking for the database called `laravel`, which you defined in your docker-compose file. Run the show databases command to check for existing databases:
-
-`mysql > show databases;`
-
-Next, create the user account that will be allowed to access this database. Our username will be `laraveluser`, though you can replace this with another name if you’d prefer. Just be sure that your username and password here match the details you set in your `.env` file in the previous step:
-
-`mysql > GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'your_laravel_db_password';`
-
-Flush the privileges to notify the MySQL server of the changes:
-
-`mysql > FLUSH PRIVILEGES;`
-
-Exit MySQL:
-
-`mysql > EXIT;`
-
-Finally, exit the container:
-
-`root@...#/ exit`
+This step it's done with the `npm run install:db` script that run in the `npm run install` script
 
 ## Migrating Data and Working with the Tinker Console
 

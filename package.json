@@ -4,11 +4,12 @@
   "private": false,
   "scripts": {
     "deploy": "npm run install:db && npm run install:be && npm run install:fe",
-    "install:be": "docker exec --rm -it composer:latest composer install && docker exec -it api ./LOCAL/deploy.sh",
+    "install:be": "docker run -it --rm -v $(pwd)/api/:/usr/src/app -w /usr/src/app composer:latest composer install",
+    "install:laravel": "docker exec -it api ./LOCAL/deploy.sh",
     "install:db": "npm run create:db && npm run create:db-user && npm run flush:db",
-    "install:fe": "docker run --rm -it node:14.17.4-alpine npm install",
-    "create:db": "docker exec db mysql -uroot -proot -e 'CREATE DATABASE jira;'",
-    "create:db-user": "docker exec db mysql -uroot -proot -e \"GRANT ALL ON jira.* TO 'laraveluser'@'%' IDENTIFIED BY 'root';\"",
+    "install:fe": "docker run -it --rm -v $(pwd)/client/:/usr/src/app -w /usr/src/app node:16.13.0-alpine npm install",
+    "create:db": "docker exec db mysql -uroot -proot -e 'CREATE DATABASE laravel;'",
+    "create:db-user": "docker exec db mysql -uroot -proot -e \"GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'root';\"",
     "flush:db": "docker exec db mysql -uroot -proot -e 'FLUSH PRIVILEGES;'"
   }
 }
