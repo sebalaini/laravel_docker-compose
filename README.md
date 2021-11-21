@@ -3,6 +3,7 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## Table of content
 - [Stack](#stack)
+- [install](#install)
 - [env](#env)
 - [Setup](#start)
 - [Database](#Creating-a-User-for-MySQL)
