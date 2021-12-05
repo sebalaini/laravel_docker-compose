@@ -4,7 +4,7 @@
 cp .env.example .env
 
 # create key
-api php artisan key:generate
+php artisan key:generate
 
 # clear all caches
 php artisan cache:clear
