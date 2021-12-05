@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+cd /var/www/
+
 # copy env
-cp .env.example .env
+cp /var/www/.env.example /var/www/.env
 
 # create key
 php artisan key:generate

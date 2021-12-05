@@ -5,7 +5,7 @@
   "scripts": {
     "deploy": "npm run install:be && npm run install:fe && npm run install:db && npm run install:laravel",
     "install:be": "docker run -it --rm -v $(pwd)/api/:/usr/src/app -w /usr/src/app composer:latest composer install",
-    "install:laravel": "docker exec -it api ./LOCAL/deploy.sh",
+    "install:laravel": "docker exec -it api bash /var/www/LOCAL/deploy.sh",
     "install:db": "npm run create:db && npm run create:db-user && npm run flush:db",
     "install:fe": "docker run -it --rm -v $(pwd)/client/:/usr/src/app -w /usr/src/app node:16.13.0-alpine npm install",
     "create:db": "docker compose up -d && docker exec db mysql -uroot -proot -e 'CREATE DATABASE laravel;'",
