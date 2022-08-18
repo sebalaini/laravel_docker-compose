@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/', function () {
+    return response()->json(["error" => "URI not valid"]);
+});
+
+Route::get('message', function () {
+    return response()->json(["name" => "Laravel, Nuxt boilerplate"]);
 });
