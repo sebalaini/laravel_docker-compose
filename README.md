@@ -19,6 +19,8 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 - MySQL 5.7
 - phpMyAdmin
 - Node
+- Laravel 9
+- Nuxt 2
 
 ## Install
 
@@ -105,9 +107,8 @@ If you prefer to connect to the database using software like sequel PRO you can 
 
 ## PHP CS Fixer
 
-To run the PHP CS Fixer run the following command: `./vendor/bin/php-cs-fixer fix --verbose --show-progress=estimating`
+To run the PHP CS Fixer run the following command: `npm run lint`
 
 # TODO #
 
 - update doc
-- BDD (behat)
