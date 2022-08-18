@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', function () {
-    return response()->json(["error" => "URI not valid"]);
+    return response()->json(['error' => 'URI not valid']);
 });
 
 Route::get('message', function () {
-    return response()->json(["name" => "Laravel, Nuxt boilerplate"]);
+    return response()->json(['name' => 'Laravel, Nuxt boilerplate']);
 });

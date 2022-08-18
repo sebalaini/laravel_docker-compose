@@ -10,6 +10,10 @@
     "install:fe": "docker run -it --rm -v $(pwd)/client/:/usr/src/app -w /usr/src/app node:16.13.0-alpine npm install",
     "create:db": "docker compose up -d && docker exec db mysql -uroot -proot -e 'CREATE DATABASE laravel;'",
     "create:db-user": "docker exec db mysql -uroot -proot -e \"GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'root';\"",
-    "flush:db": "docker exec db mysql -uroot -proot -e 'FLUSH PRIVILEGES;'"
+    "flush:db": "docker exec db mysql -uroot -proot -e 'FLUSH PRIVILEGES;'",
+    "lint": "docker exec api vendor/bin/php-cs-fixer fix --verbose --show-progress=dots",
+    "tests": "docker exec api php artisan test --parallel --order-by=random --recreate-databases",
+    "test": "docker exec -it api php artisan test --filter=",
+    "test:coverage": "docker exec api php vendor/bin/phpunit --coverage-html html"
   }
 }
