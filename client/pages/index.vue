@@ -2,8 +2,8 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        {{ appName }}
+      <h1 class="title text-center">
+        {{ appName.name }}
       </h1>
       <div class="links">
         <a
@@ -27,32 +27,11 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios';
-
-export default {
-  data () {
-    return {
-      appName: ''
-    }
-  },
-  beforeMount() {
-    axios.get(`${process.env.BASE_API_BROWSER_URL}/message`).then(resp => {
-      this.appName = resp.data.name;
-    })
-    .catch(error => {
-      console.log(error.response.status)
-    })
-  }
-}
+<script setup>
+const { data: appName } = await useFetch(`http://localhost/api/message`)
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
 .container {
   margin: 0 auto;
   min-height: 100vh;

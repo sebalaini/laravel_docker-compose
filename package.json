@@ -7,7 +7,7 @@
     "install:be": "docker run -it --rm -v $(pwd)/api/:/usr/src/app -w /usr/src/app composer:latest composer install",
     "install:laravel": "docker exec -it api bash /var/www/LOCAL/deploy.sh",
     "install:db": "npm run create:db && npm run create:db-user && npm run flush:db",
-    "install:fe": "docker run -it --rm -v $(pwd)/client/:/usr/src/app -w /usr/src/app node:16.13.0-alpine npm install",
+    "install:fe": "docker run -it --rm -v $(pwd)/client/:/usr/src/app -w /usr/src/app node:16.13.0-alpine yarn install",
     "create:db": "docker compose up -d && docker exec db mysql -uroot -proot -e 'CREATE DATABASE laravel;'",
     "create:db-user": "docker exec db mysql -uroot -proot -e \"GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'root';\"",
     "flush:db": "docker exec db mysql -uroot -proot -e 'FLUSH PRIVILEGES;'",

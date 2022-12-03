@@ -9,13 +9,20 @@ module.exports = {
   },
   variants: {},
   plugins: [],
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './components/**/*.vue',
-      './layouts/**/*.vue',
-      './pages/**/*.vue'
-    ],
-    options: {}
-  }
+  corePlugins: {
+    preflight: false
+  },
+  content: [
+    'components/*.vue',
+    'layouts/*.vue',
+    'pages/*.vue',
+    'nuxt.config.js'
+  ],
+  safelist: [
+    'whitelisted',
+    {
+      pattern: /col-(span|start)-\d*$/,
+      variants: ['sm', 'md', 'lg', 'xl']
+    }
+  ]
 }
