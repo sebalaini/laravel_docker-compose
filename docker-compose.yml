@@ -77,8 +77,6 @@ services:
     container_name: client
     volumes:
       - ./client:/var/www/client
-    ports:
-      - "3000:80"
     networks:
       - app-network
 

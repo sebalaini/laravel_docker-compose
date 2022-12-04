@@ -38,6 +38,14 @@ export default {
   },
 
   vite: {
+    server: {
+      strictPort: true,
+      port: 3000,
+      hmr: {
+        protocol: 'ws',
+        clientPort: 3000
+      }
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -57,8 +65,8 @@ export default {
     }
   },
 
-  env: {
-    BASEAPIURL: process.env.BASE_API_URL,
-    BASEAPIBROWSERURL: process.env.BASE_API_BROWSER_URL
+  publicRuntimeConfig: {
+    BASE_API_URL: '${BASE_API_URL}',
+    BASE_API_BROWSER_URL: '${BASE_API_BROWSER_URL}'
   }
 }
