@@ -3,7 +3,8 @@
     <div>
       <Logo />
       <h1 class="title text-center">
-        {{ appName.name }}
+        {{ app?.name }}
+        {{ error }}
       </h1>
       <div class="links">
         <a
@@ -28,7 +29,12 @@
 </template>
 
 <script setup>
-const { data: appName } = await useFetch(`http://localhost/api/message`)
+const runtimeConfig = useRuntimeConfig()
+const { data: app, pending, error, refresh } = await useAsyncData(() => $fetch(`${runtimeConfig.public.BASE_API_BROWSER_URL}/message`))
+
+if (process.client && error.value) {
+  await refresh()
+}
 </script>
 
 <style>

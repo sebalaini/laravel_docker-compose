@@ -1,5 +1,5 @@
-export default {
-  ssr: false,
+export default defineNuxtConfig({
+  ssr: true,
   telemetry: false,
   loading: false,
 
@@ -63,8 +63,10 @@ export default {
     }
   },
 
-  publicRuntimeConfig: {
-    BASE_API_URL: '${BASE_API_URL}',
-    BASE_API_BROWSER_URL: '${BASE_API_BROWSER_URL}'
+  runtimeConfig: {
+    public: {
+      BASE_API_URL: '',
+      BASE_API_BROWSER_URL: ''
+    }
   }
-}
+})
