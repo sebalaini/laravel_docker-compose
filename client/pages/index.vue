@@ -32,6 +32,7 @@
 const runtimeConfig = useRuntimeConfig()
 const { data: app, pending, error, refresh } = await useAsyncData(() => $fetch(`${runtimeConfig.public.BASE_API_BROWSER_URL}/message`))
 
+// seems data on the server can't be fetch, the below fetch again the data on the client side
 if (process.client && error.value) {
   await refresh()
 }
