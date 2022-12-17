@@ -1,6 +1,5 @@
 {
-  "name": "basic",
-  "version": "1.0.0",
+  "name": "nuxt",
   "private": false,
   "scripts": {
     "dev": "nuxt dev",
@@ -39,7 +38,6 @@
     "stylelint": "^14.16.0",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-standard-scss": "^6.1.0",
-    "stylelint-declaration-strict-value": "^1.9.1",
-    "vue-loader": "15.9.8"
+    "stylelint-declaration-strict-value": "^1.9.1"
   }
 }

@@ -9,6 +9,7 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 - [Database](#Creating-a-User-for-MySQL)
 - [Migration](#Migrating-Data-and-Working-with-the-Tinker-Console)
 - [phpMyAdmin](#phpMyAdmin)
+- [Redis](#Redis)
 - [3rd party tools connection](#External-connection-with-3rd-party-software)
 - [PHP CS Fixer](#PHP-CS-Fixer)
 - [TODO](#todo)
@@ -18,19 +19,18 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 - PHP 8
 - MySQL 5.7
 - phpMyAdmin
-- Node
+- Redis
+- Node 16
 - Laravel 9
-- Nuxt 2
+- Nuxt 3
 
 ## Install
 
-To install the application run the script `npm run deploy`, this script will install Nuxt with relative dependencies and Laravel with relative dependencies
+To install the application run the script `npm run deploy`, this script will install Nuxt and Laravel with the relative dependencies
 
 ## Env
 
-As a final step, before to start with the project, we will make a copy of the `.env.example` file in the client folder and name it `.env`.
-
-The `.env` of Laravel need to reflect the same info from your `docker-compose.yml`:  and update it to reflect the specifics of your setup. You will modify the following fields:
+The Laravel `.env` need to reflect the same info inside `docker-compose.yml`, update them to match your setup info. You will modify the following fields:
 
 ```
 DB_HOST The database name container.
@@ -38,7 +38,8 @@ DB_DATABASE The laravel database.
 DB_USERNAME The username for your database. In this case, we will use laraveluser.
 DB_PASSWORD The secure password for this user account. In this case, we will use root.
 
-api/.env
+
+- api/.env
 
 DB_CONNECTION=mysql
 DB_HOST=db
@@ -55,21 +56,11 @@ With all of your services defined in your docker-compose file, you just need to 
 
 `$ docker-compose up`
 
-After that command run the command `npm run install:laravel` to install Laravel and generate the Key.
-
-You now have the environment settings required to run your application. To cache these settings into a file, which will boost your application’s load speed, run:
-
-`$ docker-compose exec api php artisan config:cache`
-
-Your configuration settings will be loaded into `/var/www/bootstrap/cache/config.php` on the container.
-
-As a final step, visit `http://127.0.0.1`  or `localhost` in the browser. You will see the home page for your application.
-
-With your containers running and your configuration information in place, you can move on to configuring your user information for the `laravel` database on the db container.
+You can now visit `http://127.0.0.1`  or `localhost` in the browser. You will see the home page for your application.
 
 ##  Creating a User for MySQL
 
-The default MySQL installation only creates the root administrative account, which has unlimited privileges on the database server. In general, it’s better to avoid using the root administrative account when interacting with the database. Instead, let’s create a dedicated database user for our application’s `Laravel` database.
+The default MySQL installation only creates the root administrative account, which has unlimited privileges on the database server. In general, it’s better to avoid using the root administrative account when interacting with the database.
 
 This step it's done with the `npm run install:db` script that run in the `npm run install` script
 
@@ -99,7 +90,11 @@ Once the migration is complete, you can run a query to check if you are properly
 
 ## phpMyAdmin
 
-This setup provides a phpMyAdmin interface available at `127.0.0.1:3306` using the same credentials from the `.env` file
+This setup provides a phpMyAdmin interface available at `127.0.0.1:8080` using the same credentials from the `.env` file
+
+## Redis
+
+There is a Redis instance available at `127.0.0.1:63791`, Laravel already has installed `predis/predis`
 
 ## External connection with 3rd party software
 
@@ -107,8 +102,4 @@ If you prefer to connect to the database using software like sequel PRO you can 
 
 ## PHP CS Fixer
 
-To run the PHP CS Fixer run the following command: `npm run lint`
-
-# TODO #
-
-- update doc
+To run the PHP CS Fixer run the following command: `npm run lint`. The configuration is available in `api/.php-cs-fixer.php`
