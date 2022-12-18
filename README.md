@@ -3,30 +3,38 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## Table of content
 - [Stack](#stack)
-- [install](#install)
 - [env](#env)
-- [Setup](#start)
 - [Database](#Creating-a-User-for-MySQL)
+- [Install](#install)
+- [Setup](#start)
 - [Migration](#Migrating-Data-and-Working-with-the-Tinker-Console)
 - [phpMyAdmin](#phpMyAdmin)
 - [Redis](#Redis)
 - [3rd party tools connection](#External-connection-with-3rd-party-software)
 - [PHP CS Fixer](#PHP-CS-Fixer)
-- [TODO](#todo)
 
 ## stack
 - Nginx
+
 - PHP 8
+- Node 16
+
 - MySQL 5.7
 - phpMyAdmin
+
 - Redis
-- Node 16
+
 - Laravel 9
+  - php-cs-fixer
+  - laravel-cors
+  - Sanctum
+  - PHPUnit
+  - Paratest
 - Nuxt 3
-
-## Install
-
-To install the application run the script `npm run deploy`, this script will install Nuxt and Laravel with the relative dependencies
+  - Eslint
+  - Stylelint
+  - Sass
+  - Jest
 
 ## Env
 
@@ -49,6 +57,16 @@ DB_USERNAME=laraveluser
 DB_PASSWORD=root
 ```
 
+##  Creating a User for MySQL
+
+The default MySQL installation only creates the root administrative account, which has unlimited privileges on the database server. In general, it’s better to avoid using the root administrative account when interacting with the database.
+
+This step it's done with the `npm run install:db` script that run in the `npm run install` script.
+
+## Install
+
+To install the application run the script `npm run deploy`, this script will install Nuxt and Laravel with the relative dependencies.
+
 ## start
 
 With all of your services defined in your docker-compose file, you just need to issue a single command to start all of the containers, create the volumes, and set up and connect the networks:
@@ -58,19 +76,9 @@ With all of your services defined in your docker-compose file, you just need to 
 
 You can now visit `http://127.0.0.1`  or `localhost` in the browser. You will see the home page for your application.
 
-##  Creating a User for MySQL
+## Migrating Data
 
-The default MySQL installation only creates the root administrative account, which has unlimited privileges on the database server. In general, it’s better to avoid using the root administrative account when interacting with the database.
-
-This step it's done with the `npm run install:db` script that run in the `npm run install` script
-
-## Migrating Data and Working with the Tinker Console
-
-With your application running, you can migrate your data and experiment with the `tinker` command, which will initiate a *PsySH* console with Laravel preloaded. PsySH is a runtime developer console and interactive debugger for PHP, and Tinker is a REPL specifically for Laravel. Using the `tinker` command will allow you to interact with your Laravel application from the command line in an interactive shell.
-
-First, test the connection to MySQL by running the Laravel `artisan migrate` command, which creates a migrations table in the database from inside the container:
-
-`$ docker-compose exec api php artisan migrate`
+The migration is ran with the `artisan migrate` command during the `npm run deploy` step. 
 
 This command will migrate the default Laravel tables. The output confirming the migration will look like this:
 
@@ -83,10 +91,6 @@ Migrated:  2014_10_12_000000_create_users_table
 Migrating: 2014_10_12_100000_create_password_resets_table
 Migrated:  2014_10_12_100000_create_password_resets_table
 ```
-
-Once the migration is complete, you can run a query to check if you are properly connected to the database using the `tinker` command:
-
-`$ docker-compose exec api php artisan tinker`
 
 ## phpMyAdmin
 
