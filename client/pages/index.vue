@@ -3,8 +3,7 @@
     <div>
       <Logo />
       <h1 class="title text-center">
-        {{ app?.name }}
-        {{ error }}
+        {{ error ?? app?.name }}
       </h1>
       <div class="links">
         <a
@@ -30,12 +29,7 @@
 
 <script setup>
 const runtimeConfig = useRuntimeConfig()
-const { data: app, pending, error, refresh } = await useAsyncData(() => $fetch(`${runtimeConfig.public.BASE_API_BROWSER_URL}/message`))
-
-// seems data on the server can't be fetch, the below fetch again the data on the client side
-if (process.client && error.value) {
-  await refresh()
-}
+const { data: app, pending, error, refresh } = await useAsyncData(() => $fetch(`${runtimeConfig.public.BASE_API_URL}/message`))
 </script>
 
 <style>
