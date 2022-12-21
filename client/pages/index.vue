@@ -28,7 +28,6 @@
 </template>
 
 <script setup>
-import { useAppStore } from "~/store/Main"
 const appStore = useAppStore()
 
 const runtimeConfig = useRuntimeConfig()

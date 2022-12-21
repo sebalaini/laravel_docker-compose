@@ -2,6 +2,7 @@
 
 **This directory is not required, you can delete it if you don't want to use it.**
 
-This directory contains your Application Layouts.
+Nuxt provides a customizable layouts framework you can use throughout your application,
+ideal for extracting common UI or code patterns into reusable layout components.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/views#layouts).
+More information about the usage of this directory in [the documentation](https://nuxt.com/docs/guide/directory-structure/layouts).

@@ -36,6 +36,10 @@ export default defineNuxtConfig({
     ],
   ],
 
+  imports: {
+    dirs: ['stores'],
+  },
+
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.js',
