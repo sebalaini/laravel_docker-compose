@@ -17,6 +17,7 @@
     "test-watch": "jest --watch"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.6",
     "nuxt": "^3.0.0"
   },
   "devDependencies": {

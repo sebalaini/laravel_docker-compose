@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title text-center">
-        {{ error ?? app?.name }}
+        {{ error ?? appStore.getName }}
       </h1>
       <div class="links">
         <a
@@ -28,8 +28,13 @@
 </template>
 
 <script setup>
+import { useAppStore } from "~/store/Main"
+const appStore = useAppStore()
+
 const runtimeConfig = useRuntimeConfig()
 const { data: app, pending, error, refresh } = await useAsyncData(() => $fetch(`${runtimeConfig.public.BASE_API_URL}/message`))
+
+appStore.setName(app?.value?.name)
 </script>
 
 <style>
