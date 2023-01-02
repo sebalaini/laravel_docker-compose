@@ -38,7 +38,7 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## Env
 
-The Laravel `.env` need to reflect the same info inside `docker-compose.yml`, update them to match your setup info. You will modify the following fields:
+The Laravel `.env` need to reflect the same info inside `docker-compose.yml` and the `packaje.json` (`create:db` and `create:db-user`), update them to match your setup info. You will modify the following fields:
 
 ```
 DB_HOST The database name container.
