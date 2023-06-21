@@ -15,6 +15,7 @@ Boilerplate template for Laravel API and Nuxt front-end with docker-compose
 
 ## stack
 - Nginx
+  - Nginx config taken from this [gist](https://gist.github.com/denji/8359866) (Just a starting point for local)
 
 - PHP 8
 - Node 16
